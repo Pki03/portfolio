@@ -10,15 +10,15 @@ import dynamic from "next/dynamic";
 import { BlurIn } from "./BlurIn";
 import { profile } from "@/data/profile";
 
-const RacingCarBackground = dynamic(
-  () => import("./RacingCarBackground"),
+const TechBackground = dynamic(
+  () => import("./TechBackground"),
   { ssr: false },
 );
 
 export default function Hero() {
   return (
     <section id="home" className="relative w-full h-dvh overflow-hidden">
-      <RacingCarBackground />
+      <TechBackground />
 
       {/* Gradient overlays */}
       <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-background/20 to-transparent z-[1]" />

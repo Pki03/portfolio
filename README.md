@@ -7,7 +7,7 @@
 
 ## ✨ Highlights
 
-- **3D Ferrari Showcase** — Interactive Three.js scene with `@react-three/fiber`, realistic ground plane, ContactShadows, and ACES tone mapping
+- **Particle Field Background** — Interactive Three.js particle system with connection lines, subtle organic animation, and mouse-responsive parallax
 - **Live Competitive Programming Stats** — Real-time Codeforces rating + LeetCode stats fetched via server-side API proxies
 - **Skills Grid** — 32 curated tech icons from skillicons.dev with static labels (languages, frameworks, cloud, AI/ML, DevOps)
 - **Impact-Focused Achievements** — Production metrics (99% cache hit, 2,000+ RPS, 60% faster onboarding) instead of academic stats
@@ -52,15 +52,14 @@ src/
 │   ├── Hero.tsx                  # Hero with name, tagline, CTA
 │   ├── Preloader.tsx             # Loading screen
 │   ├── Projects.tsx              # 3D tilt card project showcase
-│   ├── RacingCarBackground.tsx   # Ferrari Three.js scene
+│   ├── TechBackground.tsx        # Particle field Three.js scene
 │   └── ... (SiteHeader, Navbar, Footer, etc.)
 ├── data/
 │   └── profile.ts                # All profile data (centralized)
 ├── lib/
 │   └── components/ui/            # shadcn-style Button, Badge, Card
 └── public/
-    ├── ferrari.glb               # Ferrari 3D model
-    └── ferrari_ao.png            # Ambient occlusion texture
+    └── (static assets, favicon, etc.)
 ```
 
 ---
@@ -82,7 +81,7 @@ npm start       # Serve production build
 
 | Section | Description |
 |---|---|
-| **Hero** | Full-screen Ferrari 3D background, name, tagline, CTA buttons |
+| **Hero** | Full-screen 3D particle field background, name, tagline, CTA buttons |
 | **Tech Stack** | 32 skill icons with labels in a responsive 4×8 grid |
 | **Experience** | Ericsson R&D SDE Intern — Second Brain platform, Java 21 migration, concurrency fix |
 | **Projects** | FogCache CDN, AI Lead Gen Agent, Route Planner, ATS Resume Builder |
