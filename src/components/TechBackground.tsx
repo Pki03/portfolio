@@ -1,15 +1,15 @@
 "use client";
 
 import { useRef, useMemo, useEffect, useCallback } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import * as THREE from "three";
 
 /* ───────── Constants ───────── */
-const COUNT = 1000;
-const CONNECT_RADIUS = 2.5;
+const COUNT = 800;
+const CONNECT_RADIUS = 2.8;
 const SPHERE_RADIUS = 8;
-const CONNECT_STEP = 3; // check every Nth particle
+const CONNECT_STEP = 3;
 
 /* ───────── Scene ───────── */
 function ParticleScene() {
@@ -26,6 +26,10 @@ function ParticleScene() {
     const orbitRadius = new Float32Array(COUNT);
     const orbitOffset = new Float32Array(COUNT);
 
+    // Site accent colors: blue (#3b82f6) → cyan (#06b6d4)
+    const blue = new THREE.Color("#3b82f6");
+    const cyan = new THREE.Color("#06b6d4");
+
     for (let i = 0; i < COUNT; i++) {
       const r = SPHERE_RADIUS * Math.pow(Math.random(), 0.5);
       const theta = Math.random() * Math.PI * 2;
@@ -34,43 +38,31 @@ function ParticleScene() {
       pos[i * 3 + 1] = Math.sin(phi) * Math.sin(theta) * r;
       pos[i * 3 + 2] = Math.cos(phi) * r;
 
-      // Rich palette: deep purple → vibrant blue → cyan → magenta
-      const t = Math.random();
-      if (t < 0.33) {
-        // Purple range
-        col[i * 3] = 0.5 + Math.random() * 0.3;
-        col[i * 3 + 1] = 0.1 + Math.random() * 0.2;
-        col[i * 3 + 2] = 0.7 + Math.random() * 0.3;
-      } else if (t < 0.66) {
-        // Blue range
-        col[i * 3] = 0.1 + Math.random() * 0.2;
-        col[i * 3 + 1] = 0.3 + Math.random() * 0.3;
-        col[i * 3 + 2] = 0.8 + Math.random() * 0.2;
-      } else {
-        // Cyan/teal range
-        col[i * 3] = 0.0 + Math.random() * 0.2;
-        col[i * 3 + 1] = 0.5 + Math.random() * 0.3;
-        col[i * 3 + 2] = 0.7 + Math.random() * 0.3;
-      }
+      // Blend between blue and cyan with random lightness variation
+      const mix = Math.random();
+      const bright = 0.6 + Math.random() * 0.4; // keep colors vibrant
+      const c = blue.clone().lerp(cyan, mix).multiplyScalar(bright);
+      col[i * 3] = c.r;
+      col[i * 3 + 1] = c.g;
+      col[i * 3 + 2] = c.b;
 
       phase[i] = Math.random() * Math.PI * 2;
-      orbitSpeed[i] = 0.1 + Math.random() * 0.2;
-      orbitRadius[i] = 0.05 + Math.random() * 0.12;
+      orbitSpeed[i] = 0.08 + Math.random() * 0.18;
+      orbitRadius[i] = 0.04 + Math.random() * 0.1;
       orbitOffset[i] = Math.random() * Math.PI * 2;
     }
     return { pos, col, phase, orbitSpeed, orbitRadius, orbitOffset };
   }, []);
 
   // ── Three.js geometries (built once) ──
-  const [particleGeo, colorAttr] = useMemo(() => {
+  const particleGeo = useMemo(() => {
     const g = new THREE.BufferGeometry();
     g.setAttribute("position", new THREE.BufferAttribute(new Float32Array(seed.pos), 3));
-    const c = new THREE.BufferAttribute(new Float32Array(seed.col), 3);
-    g.setAttribute("color", c);
-    return [g, c];
+    g.setAttribute("color", new THREE.BufferAttribute(new Float32Array(seed.col), 3));
+    return g;
   }, [seed]);
 
-  const MAX_LINE_VERTS = 12000; // 4000 line segments
+  const MAX_LINE_VERTS = 12000;
   const lineGeo = useMemo(() => {
     const g = new THREE.BufferGeometry();
     g.setAttribute("position", new THREE.BufferAttribute(new Float32Array(MAX_LINE_VERTS * 3), 3));
@@ -153,15 +145,13 @@ function ParticleScene() {
 
     // --- 4. Pulse line opacity with mouse velocity ---
     const mv = Math.abs(mouse.current.vx) + Math.abs(mouse.current.vy);
-    const pulseBase = 0.1 + Math.sin(t * 0.15) * 0.05;
-    const mouseBoost = Math.min(mv * 0.5, 0.3);
+    const pulseBase = 0.08 + Math.sin(t * 0.15) * 0.04;
+    const mouseBoost = Math.min(mv * 0.4, 0.25);
     const lines = groupRef.current.children[1] as THREE.LineSegments;
     if (lines?.material) {
-      (lines.material as THREE.LineBasicMaterial).opacity =
-        pulseBase + mouseBoost;
+      (lines.material as THREE.LineBasicMaterial).opacity = pulseBase + mouseBoost;
     }
 
-    // Decay mouse velocity
     mouse.current.vx *= 0.92;
     mouse.current.vy *= 0.92;
   });
@@ -170,10 +160,10 @@ function ParticleScene() {
     <group ref={groupRef}>
       <points geometry={particleGeo}>
         <pointsMaterial
-          size={0.08}
+          size={0.06}
           vertexColors
           transparent
-          opacity={0.95}
+          opacity={0.7}
           blending={THREE.AdditiveBlending}
           depthWrite={false}
           sizeAttenuation
@@ -182,9 +172,9 @@ function ParticleScene() {
 
       <lineSegments geometry={lineGeo}>
         <lineBasicMaterial
-          color="#818cf8"
+          color="#3b82f6"
           transparent
-          opacity={0.12}
+          opacity={0.1}
           blending={THREE.AdditiveBlending}
           depthWrite={false}
         />
@@ -208,12 +198,11 @@ export default function TechBackground() {
       >
         <ParticleScene />
 
-        {/* Bloom glow */}
         <EffectComposer>
           <Bloom
             luminanceThreshold={0.2}
             luminanceSmoothing={0.9}
-            intensity={0.6}
+            intensity={0.4}
             mipmapBlur
           />
         </EffectComposer>
