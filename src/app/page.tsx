@@ -36,7 +36,7 @@ export default function Home() {
         >
           <main
             className={cn(
-              "bg-slate-100 dark:bg-transparent",
+              "bg-bg",
               "canvas-overlay-mode"
             )}
           >
