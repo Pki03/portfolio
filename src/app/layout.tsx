@@ -38,15 +38,12 @@ export default function RootLayout({
       className={`dark ${[inter.variable, archivoBlack.variable].join(" ")}`}
       suppressHydrationWarning
     >
-      <head>
-        <script dangerouslySetInnerHTML={{
-          __html: "(function(){try{var t=localStorage.getItem('theme');if(!t||t==='dark')document.documentElement.classList.add('dark');else document.documentElement.classList.remove('dark')}catch(e){}})()",
-        }} />
-      </head>
+      <head />
       <body className="min-h-screen bg-background text-foreground font-sans">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <ScrollProgress />

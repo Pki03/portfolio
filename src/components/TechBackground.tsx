@@ -190,11 +190,8 @@ export default function TechBackground() {
       <Canvas
         camera={{ position: [0, 0, 15], fov: 50 }}
         dpr={[1, 1.5]}
-        gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
-        style={{ background: "transparent", pointerEvents: "none" }}
-        onCreated={(state) => {
-          state.gl.setClearColor(0x000000, 0);
-        }}
+        gl={{ antialias: false, alpha: false, powerPreference: "high-performance" }}
+        style={{ background: "#030712", pointerEvents: "none" }}
       >
         <ParticleScene />
 
