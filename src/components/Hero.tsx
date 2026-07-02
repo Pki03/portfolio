@@ -29,80 +29,79 @@ export default function Hero() {
           className={cn(
             "h-[calc(100dvh-3rem)] md:h-[calc(100dvh-4rem)] z-[2]",
             "col-span-1",
-            "flex flex-col justify-start md:justify-center items-center md:items-start",
-            "pt-28 sm:pb-16 md:p-20 lg:p-24 xl:p-28"
+            "flex flex-col justify-center items-center md:items-start",
+            "px-6 md:p-20 lg:p-24 xl:p-28"
           )}
         >
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full max-w-md md:max-w-none">
             <div>
               <BlurIn delay={0.7}>
-                <p className="md:self-start mt-4 font-thin text-md text-slate-500 dark:text-zinc-400 cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text">
+                <p className="md:self-start text-sm sm:text-base md:text-xl text-zinc-400 cursor-default font-display bg-clip-text">
                   Hi, I am
-                  <br className="md:hidden" />
                 </p>
               </BlurIn>
 
               <BlurIn delay={1}>
-                  <h1
-                    className={cn(
-                      "-ml-[6px] leading-none text-left",
-                      "font-thin text-7xl md:text-7xl lg:text-8xl xl:text-9xl",
-                      "cursor-default text-edge-outline font-display"
-                    )}
-                  >
+                <h1
+                  className={cn(
+                    "-ml-[3px] md:-ml-[6px] leading-none text-left",
+                    "font-thin text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl",
+                    "cursor-default text-edge-outline font-display"
+                  )}
+                >
                   {profile.name.split(" ")[0]}
-                  <br className="md:block" />
+                  <br />
                   {profile.name.split(" ")[1]}
                 </h1>
               </BlurIn>
 
               <BlurIn delay={1.2}>
-                <p className="md:self-start md:mt-4 font-thin text-md text-slate-500 dark:text-zinc-400 cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text">
+                <p className="md:self-start mt-2 md:mt-4 text-sm sm:text-base md:text-xl text-zinc-400 cursor-default font-display bg-clip-text">
                   {profile.tagline}
                 </p>
               </BlurIn>
             </div>
 
-            <div className="mt-8 flex flex-col gap-3 w-fit">
+            <div className="mt-6 md:mt-8 flex flex-col gap-3 w-full md:w-fit">
               <Button
                 className="flex items-center gap-2 w-full"
                 onClick={() => {
                   document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
                 }}
               >
-                <File size={24} />
+                <File size={20} />
                 <p>View My Work</p>
               </Button>
 
-              <div className="md:self-start flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full">
                 <Button
                   variant={"outline"}
-                  className="block w-full overflow-hidden"
+                  className="flex-1 overflow-hidden"
                   onClick={() => {
                     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
                   Get in Touch
                 </Button>
-                <div className="flex items-center h-full gap-2">
+                <div className="flex items-center justify-center gap-2">
                   <Link href={profile.socials.github} target="_blank">
-                    <Button variant={"outline"}>
-                      <FaGithub size={24} />
+                    <Button variant={"outline"} className="p-2 w-10 h-10">
+                      <FaGithub size={20} />
                     </Button>
                   </Link>
                   <Link href={profile.socials.linkedin} target="_blank">
-                    <Button variant={"outline"}>
-                      <FaLinkedin size={24} />
+                    <Button variant={"outline"} className="p-2 w-10 h-10">
+                      <FaLinkedin size={20} />
                     </Button>
                   </Link>
                   <Link href={profile.socials.leetcode} target="_blank">
-                    <Button variant={"outline"}>
-                      <SiLeetcode size={20} />
+                    <Button variant={"outline"} className="p-2 w-10 h-10">
+                      <SiLeetcode size={16} />
                     </Button>
                   </Link>
                   <Link href={profile.socials.codeforces} target="_blank">
-                    <Button variant={"outline"}>
-                      <SiCodeforces size={20} />
+                    <Button variant={"outline"} className="p-2 w-10 h-10">
+                      <SiCodeforces size={16} />
                     </Button>
                   </Link>
                 </div>

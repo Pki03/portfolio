@@ -35,10 +35,10 @@ function CodeforcesCard({ data }: { data: CodeforcesData | null }) {
   const rankColor = rankColors[data?.rank?.toLowerCase().replace(/\s+/g, "") ?? ""] ?? "text-zinc-400";
 
   return (
-    <div className="p-6 rounded-xl border border-border bg-card hover:bg-card-hover transition-all hover:shadow-lg hover:shadow-accent/5">
-      <div className="flex items-center gap-3 mb-5">
-        <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-          <Code2 size={20} className="text-accent" />
+    <div className="p-5 md:p-6 rounded-xl border border-border bg-card hover:bg-card-hover transition-all hover:shadow-lg hover:shadow-accent/5">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-9 h-9 md:w-10 md:h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+          <Code2 size={18} className="text-accent" />
         </div>
         <div>
           <h3 className="text-sm font-semibold">Codeforces</h3>
@@ -49,7 +49,7 @@ function CodeforcesCard({ data }: { data: CodeforcesData | null }) {
       {data ? (
         <div className="space-y-3">
           <div>
-            <span className={`text-3xl font-bold tracking-tight ${rankColor}`}>
+            <span className={`text-2xl md:text-3xl font-bold tracking-tight ${rankColor}`}>
               {data.rating}
             </span>
             <span className="text-xs text-muted ml-2">rating</span>
@@ -85,10 +85,10 @@ function LeetCodeCard({ data }: { data: LeetCodeData | null }) {
   const maxProblems = 3500;
 
   return (
-    <div className="p-6 rounded-xl border border-border bg-card hover:bg-card-hover transition-all hover:shadow-lg hover:shadow-accent/5">
-      <div className="flex items-center gap-3 mb-5">
-        <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-          <BarChart3 size={20} className="text-accent" />
+    <div className="p-5 md:p-6 rounded-xl border border-border bg-card hover:bg-card-hover transition-all hover:shadow-lg hover:shadow-accent/5">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-9 h-9 md:w-10 md:h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+          <BarChart3 size={18} className="text-accent" />
         </div>
         <div>
           <h3 className="text-sm font-semibold">LeetCode</h3>
@@ -98,9 +98,9 @@ function LeetCodeCard({ data }: { data: LeetCodeData | null }) {
 
       {data ? (
         <div className="space-y-3">
-          <div className="flex items-baseline gap-4">
+          <div className="flex items-baseline justify-between md:justify-normal md:gap-4">
             <div>
-              <span className="text-3xl font-bold tracking-tight">
+              <span className="text-2xl md:text-3xl font-bold tracking-tight">
                 {total}
               </span>
               <span className="text-xs text-muted ml-2">solved</span>
@@ -190,7 +190,7 @@ export default function CpStats() {
   }, []);
 
   return (
-    <section className="py-32 px-6">
+    <section className="py-20 md:py-32 px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -201,7 +201,7 @@ export default function CpStats() {
           <span className="text-sm font-mono text-accent mb-2 block">
             {"//"} competitive programming
           </span>
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-none mb-3">
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-none mb-3">
             Problem Solving
           </h2>
           <p className="text-muted text-sm">

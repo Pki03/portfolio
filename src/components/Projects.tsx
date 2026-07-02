@@ -68,7 +68,7 @@ function InfoIcon({ label }: { label: string }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-32 px-6">
+    <section id="projects" className="py-20 md:py-32 px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -79,7 +79,7 @@ export default function Projects() {
           <span className="text-sm font-mono text-accent mb-2 block">
             {"//"} projects
           </span>
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-none mb-3">
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-none mb-3">
             Things I&apos;ve Built
           </h2>
           <p className="text-muted text-sm">

@@ -39,7 +39,7 @@ const ICONS: { id: string; name: string }[] = [
 
 export default function SkillsSection() {
   return (
-    <section id="skills" className="relative w-full py-32 px-6">
+    <section id="skills" className="relative w-full py-20 md:py-32 px-6">
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute top-1/3 right-1/4 w-[700px] h-[700px] rounded-full opacity-[0.03]"
@@ -60,26 +60,26 @@ export default function SkillsSection() {
           <span className="text-sm font-mono text-accent mb-2 block">
             {"//"} tech stack
           </span>
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-none text-foreground">
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-none text-foreground">
             Tech Stack
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-4 md:grid-cols-8 gap-1 w-fit mx-auto">
+        <div className="grid grid-cols-4 gap-1 w-fit mx-auto">
           {ICONS.map((skill) => (
             <div
               key={skill.id}
-              className="w-24 h-28 md:w-28 md:h-32 bg-zinc-950 border border-zinc-800 flex flex-col items-center justify-center gap-1 hover:border-zinc-600 hover:bg-zinc-900 hover:scale-110 transition-all cursor-pointer"
+              className="w-[72px] h-[84px] md:w-28 md:h-32 bg-zinc-950 border border-zinc-800 flex flex-col items-center justify-center gap-1 hover:border-zinc-600 hover:bg-zinc-900 hover:scale-110 transition-all cursor-pointer"
             >
               <img
                 src={`https://skillicons.dev/icons?i=${skill.id}`}
                 alt={skill.name}
                 loading="lazy"
-                width={64}
-                height={64}
-                className="w-12 h-12 md:w-14 md:h-14 object-contain block"
+                width={48}
+                height={48}
+                className="w-8 h-8 md:w-14 md:h-14 object-contain block"
               />
-              <span className="text-[10px] md:text-[11px] font-mono text-zinc-400 leading-tight text-center px-0.5">
+              <span className="text-[9px] md:text-[11px] font-mono text-zinc-400 leading-tight text-center px-0.5">
                 {skill.name}
               </span>
             </div>

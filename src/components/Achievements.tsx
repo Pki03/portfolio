@@ -87,7 +87,7 @@ function AnimatedCounter({
 
 export default function Achievements() {
   return (
-    <section className="py-32 px-6 bg-card/50">
+    <section className="py-20 md:py-32 px-6 bg-card/50">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -98,7 +98,7 @@ export default function Achievements() {
           <span className="text-sm font-mono text-accent mb-2 block">
             {"//"} achievements
           </span>
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-none mb-3">
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-none mb-3">
             By the Numbers
           </h2>
           <p className="text-muted text-sm">
@@ -119,12 +119,12 @@ export default function Achievements() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.08 }}
-                className="group p-6 rounded-xl border border-border bg-card text-center hover:bg-card-hover transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/5"
+                className="group p-4 md:p-6 rounded-xl border border-border bg-card text-center hover:bg-card-hover transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/5"
               >
-                <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-accent/20 transition-colors group-hover:scale-110 group-hover:-translate-y-0.5 transition-all">
-                  <Icon size={18} className="text-accent" />
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-accent/10 flex items-center justify-center mx-auto mb-2 md:mb-3 group-hover:bg-accent/20 transition-colors group-hover:scale-110 group-hover:-translate-y-0.5 transition-all">
+                  <Icon size={14} className="text-accent md:text-[18px]" />
                 </div>
-                <div className="text-2xl font-bold tracking-tight mb-1 tabular-nums">
+                <div className="text-lg md:text-2xl font-bold tracking-tight mb-1 tabular-nums">
                   {item.label === "Merit Scholarship" ? (
                     item.value
                   ) : (

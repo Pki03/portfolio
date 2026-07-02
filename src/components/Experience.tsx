@@ -39,7 +39,7 @@ function extractMetrics(text: string): string[] {
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-32 px-6 relative">
+    <section id="experience" className="py-20 md:py-32 px-6 relative">
       {/* Subtle gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[0.02] to-transparent pointer-events-none" />
 
@@ -53,7 +53,7 @@ export default function Experience() {
           <span className="text-sm font-mono text-accent mb-2 block">
             {"//"} experience
           </span>
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-none text-foreground mb-3">
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-none text-foreground mb-3">
             Where I&apos;ve Worked
           </h2>
           <p className="text-muted text-sm">
